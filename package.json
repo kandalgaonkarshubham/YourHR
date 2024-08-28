@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "initiate": "npm i && concurrently \"cd ./backend && npm i\" \"cd ./frontend && npm i\"",
-    "start": "concurrently \"cd ./backend && npm run dev\" \"cd ./frontend && npm run dev\""
+    "start": "concurrently \"cd ./backend && npm run dev\" \"cd ./frontend && npm run start\""
   },
   "dependencies": {
     "concurrently": "^8.2.2"
