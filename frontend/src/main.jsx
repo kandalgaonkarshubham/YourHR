@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Root from "routes/Root";
 import Auth from "routes/Auth";
+import Jobs from "routes/Jobs";
 import NotFound from "routes/NotFound";
 
 const router = createBrowserRouter([
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: "/auth",
     element: <Auth />,
+  },
+  {
+    path: "/jobs",
+    element: <Jobs />,
   },
   {
     path: "*",

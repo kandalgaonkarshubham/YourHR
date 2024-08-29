@@ -130,7 +130,7 @@ export default function Auth() {
                               href="#"
                               className="text-sm text-teal-500 hover:underline"
                             >
-                              New to YourHR?
+                              Don&apos;t have an Account? Sign Up
                             </a>
                           </div>
                         </div>

@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-
 import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Header() {
@@ -8,7 +6,7 @@ export default function Header() {
   return (
     <header className="relative flex max-w-screen-xl flex-col overflow-hidden px-4 py-4 text-slate-700 md:mx-auto md:flex-row md:items-center">
       <a
-        href="#"
+        href="/"
         className="flex cursor-pointer items-center whitespace-nowrap text-2xl font-bold font-[Syne] uppercase"
       >
         <span className="mr-2 text-4xl text-teal-500">
@@ -54,7 +52,9 @@ export default function Header() {
       >
         <ul className="flex flex-col items-center space-y-2 md:ml-auto md:flex-row md:space-y-0">
           <li
-            className={`md:mr-12 cursor-pointer ${location.pathname === "/jobs" ? "font-bold" : ""}`}
+            className={`md:mr-12 cursor-pointer ${
+              location.pathname === "/jobs" ? "font-bold" : ""
+            }`}
             onClick={() => navigate("/jobs")}
           >
             Jobs
@@ -65,7 +65,7 @@ export default function Header() {
           <li className="md:mr-12">
             <a href="#">Services</a>
           </li>
-          <li className="md:mr-2">
+          <li className="md:mr-4">
             <button
               className="rounded-full border-2 px-6 py-1"
               onClick={() => navigate("/auth")}

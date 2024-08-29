@@ -110,7 +110,7 @@ export default function Hero() {
                     width="100%"
                     height="100%"
                     preserveAspectRatio="xMaxYMax slice"
-                    href="img/hero.png"
+                    href="img/hero.svg"
                   />
                 </pattern>
               </defs>
