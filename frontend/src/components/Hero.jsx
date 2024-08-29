@@ -8,6 +8,14 @@ import {
   NotionLogoIcon,
   DiscordLogoIcon,
   LinkedInLogoIcon,
+  DimensionsIcon,
+  PersonIcon,
+  GearIcon,
+  LayersIcon,
+  CodeIcon,
+  OpenInNewWindowIcon,
+  CameraIcon,
+  ActivityLogIcon,
 } from "@radix-ui/react-icons";
 
 const LOGOS = [
@@ -76,8 +84,7 @@ export default function Hero() {
             <div className="relative border-2 rounded-md">
               <input
                 type="search"
-                id="default-search"
-                className="block w-full p-4 text-sm text-black"
+                className="block w-full p-4 text-sm text-black outline-none"
                 placeholder="Job Title"
                 required
               />
@@ -118,7 +125,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-44 lg:px-8 lg:py-20 !pt-4">
+      <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-44 lg:px-8 lg:py-20">
         <div className="grid row-gap-8 sm:grid-cols-3">
           <div className="text-center">
             <h6 className="text-5xl font-bold text-teal-500">144K+</h6>
@@ -135,14 +142,14 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-44 lg:px-8">
+      <div className="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-44 lg:px-8 my-16">
         <h4 className="text-center text-3xl font-bold">
           We are <span className="text-teal-500">supported</span>
         </h4>
         <p className="text-center text-sm text-slate-600 mt-4">
           Millions of users secured
         </p>
-        <div className="relative w-full overflow-hidden bg-white before:absolute before:left-0 before:top-0 before:z-[2] before:h-full before:w-[100px] before:bg-[linear-gradient(to_right,white_0%,rgba(255,255,255,0)_100%)] before:content-[''] after:absolute after:right-0 after:top-0 after:z-[2] after:h-full after:w-[100px] after:-scale-x-100 after:bg-[linear-gradient(to_right,white_0%,rgba(255,255,255,0)_100%)] after:content-[''] mt-8">
+        <div className="relative w-full overflow-hidden bg-white before:absolute before:left-0 before:top-0 before:z-[2] before:h-full before:w-[100px] before:bg-[linear-gradient(to_right,white_0%,rgba(255,255,255,0)_100%)] before:content-[''] after:absolute after:right-0 after:top-0 after:z-[2] after:h-full after:w-[100px] after:-scale-x-100 after:bg-[linear-gradient(to_right,white_0%,rgba(255,255,255,0)_100%)] after:content-[''] mt-10">
           <div className="animate-infinite-slider flex w-[calc(250px*10)] gap-20 text-slate-400">
             {LOGOS.map((logo, index) => (
               <div
@@ -166,7 +173,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="bg-teal-50 mt-20 mb-10">
+      <div className="bg-teal-50 mt-32 mb-10">
         <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
           <p className="text-3xl text-black font-semibold mb-20">
             Most demanding Categories.
@@ -175,177 +182,91 @@ export default function Hero() {
             <div className="flex flex-col justify-between overflow-hidden duration-200 bg-white rounded-md">
               <div className="p-5">
                 <div className="flex items-center justify-center w-10 h-10 mb-4 rounded-full bg-teal-100">
-                  <svg
-                    className="w-8 h-8 text-deep-purple-accent-400"
-                    stroke="rgb(17,94,89)"
-                    viewBox="0 0 52 52"
-                  >
-                    <polygon
-                      strokeWidth="3"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      fill="none"
-                      points="29 13 14 29 25 29 23 39 38 23 27 23"
-                    />
-                  </svg>
+                  <DimensionsIcon className="w-6 h-6 stroke-teal-800" />
                 </div>
                 <p className="mb-2 font-bold">Design & Development</p>
-                <p className="text-sm leading-5 text-gray-900"> vacancies</p>
+                <p className="text-sm leading-5 text-gray-900">
+                  1275 vacancies
+                </p>
               </div>
               <div className="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-deep-purple-accent-400 group-hover:scale-x-100" />
             </div>
             <div className="flex flex-col justify-between overflow-hidden duration-200 bg-white rounded-md">
               <div className="p-5">
                 <div className="flex items-center justify-center w-10 h-10 mb-4 rounded-full bg-teal-100">
-                  <svg
-                    className="w-8 h-8 text-deep-purple-accent-400"
-                    stroke="rgb(17,94,89)"
-                    viewBox="0 0 52 52"
-                  >
-                    <polygon
-                      strokeWidth="3"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      fill="none"
-                      points="29 13 14 29 25 29 23 39 38 23 27 23"
-                    />
-                  </svg>
+                  <ActivityLogIcon className="w-6 h-6 stroke-teal-800" />
                 </div>
                 <p className="mb-2 font-bold">Business & Marketing</p>
-                <p className="text-sm leading-5 text-gray-900"> vacancies</p>
+                <p className="text-sm leading-5 text-gray-900">
+                  8460 vacancies
+                </p>
               </div>
               <div className="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-deep-purple-accent-400 group-hover:scale-x-100" />
             </div>
             <div className="flex flex-col justify-between overflow-hidden duration-200 bg-white rounded-md">
               <div className="p-5">
                 <div className="flex items-center justify-center w-10 h-10 mb-4 rounded-full bg-teal-100">
-                  <svg
-                    className="w-8 h-8 text-deep-purple-accent-400"
-                    stroke="rgb(17,94,89)"
-                    viewBox="0 0 52 52"
-                  >
-                    <polygon
-                      strokeWidth="3"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      fill="none"
-                      points="29 13 14 29 25 29 23 39 38 23 27 23"
-                    />
-                  </svg>
+                  <PersonIcon className="w-6 h-6 stroke-teal-800" />
                 </div>
                 <p className="mb-2 font-bold">Customer Marketing & Sales</p>
-                <p className="text-sm leading-5 text-gray-900"> vacancies</p>
+                <p className="text-sm leading-5 text-gray-900">979 vacancies</p>
               </div>
               <div className="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-deep-purple-accent-400 group-hover:scale-x-100" />
             </div>
             <div className="flex flex-col justify-between overflow-hidden duration-200 bg-white rounded-md">
               <div className="p-5">
                 <div className="flex items-center justify-center w-10 h-10 mb-4 rounded-full bg-teal-100">
-                  <svg
-                    className="w-8 h-8 text-deep-purple-accent-400"
-                    stroke="rgb(17,94,89)"
-                    viewBox="0 0 52 52"
-                  >
-                    <polygon
-                      strokeWidth="3"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      fill="none"
-                      points="29 13 14 29 25 29 23 39 38 23 27 23"
-                    />
-                  </svg>
+                  <GearIcon className="w-6 h-6 stroke-teal-800" />
                 </div>
-                <p className="mb-2 font-bold">Business development</p>
-                <p className="text-sm leading-5 text-gray-900"> vacancies</p>
+                <p className="mb-2 font-bold">Game Design & Development</p>
+                <p className="text-sm leading-5 text-gray-900">772 vacancies</p>
               </div>
               <div className="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-deep-purple-accent-400 group-hover:scale-x-100" />
             </div>
             <div className="flex flex-col justify-between overflow-hidden duration-200 bg-white rounded-md">
               <div className="p-5">
                 <div className="flex items-center justify-center w-10 h-10 mb-4 rounded-full bg-teal-100">
-                  <svg
-                    className="w-8 h-8 text-deep-purple-accent-400"
-                    stroke="rgb(17,94,89)"
-                    viewBox="0 0 52 52"
-                  >
-                    <polygon
-                      strokeWidth="3"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      fill="none"
-                      points="29 13 14 29 25 29 23 39 38 23 27 23"
-                    />
-                  </svg>
+                  <CodeIcon className="w-6 h-6 stroke-teal-800" />
                 </div>
                 <p className="mb-2 font-bold">FrontEnd Web Development</p>
-                <p className="text-sm leading-5 text-gray-900"> vacancies</p>
+                <p className="text-sm leading-5 text-gray-900">
+                  4532 vacancies
+                </p>
               </div>
               <div className="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-deep-purple-accent-400 group-hover:scale-x-100" />
             </div>
             <div className="flex flex-col justify-between overflow-hidden duration-200 bg-white rounded-md">
               <div className="p-5">
                 <div className="flex items-center justify-center w-10 h-10 mb-4 rounded-full bg-teal-100">
-                  <svg
-                    className="w-8 h-8 text-deep-purple-accent-400"
-                    stroke="rgb(17,94,89)"
-                    viewBox="0 0 52 52"
-                  >
-                    <polygon
-                      strokeWidth="3"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      fill="none"
-                      points="29 13 14 29 25 29 23 39 38 23 27 23"
-                    />
-                  </svg>
+                  <LayersIcon className="w-6 h-6 stroke-teal-800" />
                 </div>
                 <p className="mb-2 font-bold">Graphics Designing</p>
-                <p className="text-sm leading-5 text-gray-900"> vacancies</p>
+                <p className="text-sm leading-5 text-gray-900">
+                  2346 vacancies
+                </p>
               </div>
               <div className="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-deep-purple-accent-400 group-hover:scale-x-100" />
             </div>
             <div className="flex flex-col justify-between overflow-hidden duration-200 bg-white rounded-md">
               <div className="p-5">
                 <div className="flex items-center justify-center w-10 h-10 mb-4 rounded-full bg-teal-100">
-                  <svg
-                    className="w-8 h-8 text-deep-purple-accent-400"
-                    stroke="rgb(17,94,89)"
-                    viewBox="0 0 52 52"
-                  >
-                    <polygon
-                      strokeWidth="3"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      fill="none"
-                      points="29 13 14 29 25 29 23 39 38 23 27 23"
-                    />
-                  </svg>
+                  <CameraIcon className="w-6 h-6 stroke-teal-800" />
                 </div>
-                <p className="mb-2 font-bold">MERN Stack Development</p>
-                <p className="text-sm leading-5 text-gray-900"> vacancies</p>
+                <p className="mb-2 font-bold">Commercial Photography</p>
+                <p className="text-sm leading-5 text-gray-900">
+                  7819 vacancies
+                </p>
               </div>
               <div className="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-deep-purple-accent-400 group-hover:scale-x-100" />
             </div>
             <div className="flex flex-col justify-between overflow-hidden duration-200 bg-teal-600 font-[Syne] rounded-md">
               <div className="p-5">
-                <p className="font-bold text-5xl text-white">2K+</p>
+                <p className="font-bold text-5xl text-white">3.7K+</p>
                 <p className="text-sm leading-5 text-white mb-6">
-                  Fields Active
+                  Categories to work with
                 </p>
                 <div className="flex items-center justify-center w-full h-10 mb-4 rounded-full bg-teal-100">
-                  <svg
-                    className="w-8 h-8 text-deep-purple-accent-400"
-                    stroke="rgb(17,94,89)"
-                    viewBox="0 0 52 52"
-                  >
-                    <polygon
-                      strokeWidth="3"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      fill="none"
-                      points="29 13 14 29 25 29 23 39 38 23 27 23"
-                    />
-                  </svg>
+                  <OpenInNewWindowIcon className="w-6 h-6 stroke-teal-800" />
                 </div>
               </div>
               <div className="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-deep-purple-accent-400 group-hover:scale-x-100" />

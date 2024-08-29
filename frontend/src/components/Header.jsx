@@ -1,5 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+
+import { useNavigate, useLocation } from "react-router-dom";
+
 export default function Header() {
+  const navigate = useNavigate();
+  const location = useLocation();
   return (
     <header className="relative flex max-w-screen-xl flex-col overflow-hidden px-4 py-4 text-slate-700 md:mx-auto md:flex-row md:items-center">
       <a
@@ -48,8 +53,11 @@ export default function Header() {
         className="flex max-h-0 w-full flex-col items-center justify-between overflow-hidden transition-all peer-checked:mt-8 peer-checked:max-h-56 md:ml-24 md:max-h-full md:flex-row md:items-start"
       >
         <ul className="flex flex-col items-center space-y-2 md:ml-auto md:flex-row md:space-y-0">
-          <li className="font-bold md:mr-12">
-            <a href="/jobs">Jobs</a>
+          <li
+            className={`md:mr-12 cursor-pointer ${location.pathname === "/jobs" ? "font-bold" : ""}`}
+            onClick={() => navigate("/jobs")}
+          >
+            Jobs
           </li>
           <li className="md:mr-12">
             <a href="#">Companies</a>
@@ -58,7 +66,10 @@ export default function Header() {
             <a href="#">Services</a>
           </li>
           <li className="md:mr-2">
-            <button className="rounded-full border-2 px-6 py-1">
+            <button
+              className="rounded-full border-2 px-6 py-1"
+              onClick={() => navigate("/auth")}
+            >
               Login/Sign Up
             </button>
           </li>
