@@ -75,8 +75,8 @@ export default function Footer() {
             </a>
           </div>
         </div>
-        <div className="container mx-auto flex flex-col justify-around text-center">
-          <div className="flex flex-col justify-center lg:text-left">
+        <div className="w-full md:container mx-auto flex flex-col justify-around text-center">
+          <div className="flex flex-col items-start md:justify-center lg:text-left">
             <p className="text-base font-bold tracking-wide text-gray-900">
               Apply on the go
             </p>
@@ -84,8 +84,8 @@ export default function Footer() {
               Get real-time job updates on our app
             </h1>
           </div>
-          <div className="flex items-start justify-center sm:flex-col gap-2 mt-4">
-            <button className="inline-flex w-48 items-center px-6 py-3 rounded-lg bg-teal-500 text-gray-50">
+          <div className="flex flex-wrap items-start md:justify-center sm:flex-col gap-2 mt-4">
+            <button className="inline-flex w-64 md:w-48 items-center px-6 py-3 rounded-lg bg-teal-500 text-gray-50">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -98,7 +98,7 @@ export default function Footer() {
                 <span className="font-semibold">Google Play</span>
               </span>
             </button>
-            <button className="inline-flex w-48 items-center px-5 py-3 rounded-lg bg-teal-500 text-gray-50">
+            <button className="inline-flex w-64 md:w-48 items-center px-5 py-3 rounded-lg bg-teal-500 text-gray-50">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 50 50"

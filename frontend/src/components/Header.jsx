@@ -1,5 +1,10 @@
 import { useNavigate, useLocation } from "react-router-dom";
 
+
+import { Bell } from "lucide-react";
+
+import { Avatar, AvatarImage, AvatarFallback } from "shadcn/avatar";
+
 export default function Header() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -65,19 +70,35 @@ export default function Header() {
           <li className="md:mr-12">
             <a href="#">Services</a>
           </li>
-          <li className="md:mr-4">
-            <button
-              className="rounded-full border-2 px-6 py-1"
-              onClick={() => navigate("/auth")}
-            >
-              Login/Sign Up
-            </button>
-          </li>
-          <li className="md:mr-12">
-            <button className="rounded-full px-6 py-1 bg-teal-500 text-white">
-              Post a Job
-            </button>
-          </li>
+          {false ? (
+            <>
+              <li className="md:mr-4">
+                <button
+                  className="rounded-full border-2 px-6 py-1"
+                  onClick={() => navigate("/auth")}
+                >
+                  Login/Sign Up
+                </button>
+              </li>
+              <li className="md:mr-12">
+                <button className="rounded-full px-6 py-1 bg-teal-500 text-white">
+                  Post a Job
+                </button>
+              </li>
+            </>
+          ) : (
+            <>
+              <li className="md:mr-4">
+                <Bell width={22} className="text-gray-500" />
+              </li>
+              <li className="md:mr-12">
+                <Avatar>
+                  <AvatarImage src="https://github.com/shadcn.png" />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+              </li>
+            </>
+          )}
         </ul>
       </nav>
     </header>
