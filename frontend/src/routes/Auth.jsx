@@ -1,7 +1,89 @@
+import { useState } from "react";
+import axios from "axios";
+
 import { Album, Briefcase } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "shadcn/tabs";
 
 export default function Auth() {
+  const [formData, setFormData] = useState({
+    fullname: "",
+    email: "",
+    number: "",
+    password: "",
+    cpassword: "",
+    experience: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [response, setResponse] = useState(null);
+  const [error, setError] = useState(null);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleRegister = async () => {
+    if (
+      formData.fullname &&
+      formData.email &&
+      formData.number &&
+      formData.password &&
+      formData.cpassword &&
+      formData.experience
+    ) {
+      if (formData.password === formData.cpassword) {
+        setLoading(true);
+        try {
+          const response = await axios.post(
+            "http://localhost:5000/register",
+            formData
+          );
+          setResponse(response.data.message);
+          setLoading(false);
+          setError(null);
+          setFormData({
+            fullname: "",
+            email: "",
+            number: "",
+            password: "",
+            cpassword: "",
+            experience: "",
+          });
+        } catch (error) {
+          setLoading(false);
+          setError(error.message);
+        }
+      } else {
+        setError("Passwords do not match");
+      }
+    }
+  };
+  const handleLogin = async () => {
+    if (formData.email && formData.password) {
+      try {
+        const response = await axios.post("http://localhost:5000/login", {
+          email: formData.email,
+          password: formData.password,
+        });
+        console.log(response.data);
+        setResponse(response.data.message);
+        setError(null);
+        setFormData({
+          fullname: "",
+          email: "",
+          number: "",
+          password: "",
+          cpassword: "",
+          experience: "",
+        });
+      } catch (error) {
+        setError(error.message);
+      }
+    }
+  };
   return (
     <>
       <div className="flex min-h-screen w-full items-center justify-center text-gray-600 bg-gray-50">
@@ -73,7 +155,7 @@ export default function Auth() {
           <div className="relative flex flex-col sm:w-[30rem] rounded-lg border-gray-400 bg-white shadow-lg px-4">
             <div className="flex-auto p-6">
               <div className="container flex items-center justify-center px-6 mx-auto">
-                <form className="w-full max-w-md">
+                <div className="w-full max-w-md">
                   <div className="flex justify-center mx-auto">
                     <svg
                       className="w-10 text-deep-purple-accent-400"
@@ -87,7 +169,16 @@ export default function Auth() {
                       ></path>
                     </svg>
                   </div>
-
+                  {error && (
+                    <p className="text-sm text-center font-bold mt-4 mb-0 text-red-500">
+                      {error}
+                    </p>
+                  )}
+                  {response && (
+                    <p className="text-sm text-center font-bold mt-4 mb-0 text-green-500">
+                      {response}
+                    </p>
+                  )}
                   <div className="flex items-center justify-center mt-6">
                     <Tabs defaultValue="register">
                       <TabsList className="w-full bg-transparent">
@@ -104,12 +195,17 @@ export default function Auth() {
                           Register
                         </TabsTrigger>
                       </TabsList>
+
                       <TabsContent value="login">
                         <div className="relative flex items-center mt-8">
                           <input
                             type="email"
                             className="block w-full py-3 text-gray-700 border rounded-xl px-4 border-gray-200 outline-none"
                             placeholder="Email Address"
+                            name="email"
+                            onChange={handleChange}
+                            value={formData.email}
+                            disabled={loading}
                             required
                           />
                         </div>
@@ -118,11 +214,19 @@ export default function Auth() {
                             type="password"
                             className="block w-full py-3 text-gray-700 border rounded-xl px-4 border-gray-200 outline-none"
                             placeholder="Password"
+                            name="password"
+                            onChange={handleChange}
+                            value={formData.password}
+                            disabled={loading}
                             required
                           />
                         </div>
                         <div className="mt-6">
-                          <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-teal-500 rounded-lg hover:bg-teal-400 focus:outline-none focus:ring focus:ring-teal-300 focus:ring-opacity-50">
+                          <button
+                            className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-teal-500 rounded-lg hover:bg-teal-400 focus:outline-none focus:ring focus:ring-teal-300 focus:ring-opacity-50"
+                            onClick={handleLogin}
+                            disabled={loading}
+                          >
                             Sign In
                           </button>
                           <div className="mt-6 text-center ">
@@ -141,6 +245,10 @@ export default function Auth() {
                             type="text"
                             className="block w-full py-3 text-gray-700 border rounded-xl px-4 border-gray-200 outline-none"
                             placeholder="Full Name"
+                            name="fullname"
+                            value={formData.fullname}
+                            onChange={handleChange}
+                            disabled={loading}
                             required
                           />
                         </div>
@@ -149,6 +257,10 @@ export default function Auth() {
                             type="email"
                             className="block w-full py-3 text-gray-700 border rounded-xl px-4 border-gray-200 outline-none"
                             placeholder="Email Address"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            disabled={loading}
                             required
                           />
                         </div>
@@ -157,6 +269,10 @@ export default function Auth() {
                             type="text"
                             className="block w-full py-3 text-gray-700 border rounded-xl px-4 border-gray-200 outline-none"
                             placeholder="Mobile Number"
+                            name="number"
+                            value={formData.number}
+                            onChange={handleChange}
+                            disabled={loading}
                             required
                           />
                         </div>
@@ -165,6 +281,10 @@ export default function Auth() {
                             type="password"
                             className="block w-full py-3 text-gray-700 border rounded-xl px-4 border-gray-200 outline-none"
                             placeholder="Create a Password"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            disabled={loading}
                             required
                           />
                         </div>
@@ -173,6 +293,10 @@ export default function Auth() {
                             type="password"
                             className="block w-full py-3 text-gray-700 border rounded-xl px-4 border-gray-200 outline-none"
                             placeholder="Confirm Password"
+                            name="cpassword"
+                            value={formData.cpassword}
+                            onChange={handleChange}
+                            disabled={loading}
                             required
                           />
                         </div>
@@ -181,14 +305,17 @@ export default function Auth() {
                             <li>
                               <input
                                 type="radio"
-                                id="hosting-small"
-                                name="hosting"
-                                value="hosting-small"
+                                id="experienced"
+                                name="experience"
+                                value="Experienced"
                                 className="hidden peer"
+                                onChange={handleChange}
+                                disabled={loading}
+                                checked={formData.experience == "Experienced"}
                                 required
                               />
                               <label
-                                htmlFor="hosting-small"
+                                htmlFor="experienced"
                                 className="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-teal-600 peer-checked:text-teal-600 hover:text-gray-600 hover:bg-gray-100"
                               >
                                 <div className="block">
@@ -205,13 +332,17 @@ export default function Auth() {
                             <li>
                               <input
                                 type="radio"
-                                id="hosting-big"
-                                name="hosting"
-                                value="hosting-big"
+                                id="fresher"
+                                name="experience"
+                                value="Fresher"
                                 className="hidden peer"
+                                onChange={handleChange}
+                                disabled={loading}
+                                checked={formData.experience == "Fresher"}
+                                required
                               />
                               <label
-                                htmlFor="hosting-big"
+                                htmlFor="fresher"
                                 className="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-teal-600 peer-checked:text-teal-600 hover:text-gray-600 hover:bg-gray-100"
                               >
                                 <div className="block">
@@ -230,7 +361,11 @@ export default function Auth() {
                         </div>
 
                         <div className="mt-6">
-                          <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-teal-500 rounded-lg hover:bg-teal-400 focus:outline-none focus:ring focus:ring-teal-300 focus:ring-opacity-50">
+                          <button
+                            className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-teal-500 rounded-lg hover:bg-teal-400 focus:outline-none focus:ring focus:ring-teal-300 focus:ring-opacity-50"
+                            onClick={handleRegister}
+                            disabled={loading}
+                          >
                             Sign Up
                           </button>
                           <div className="mt-6 text-center ">
@@ -245,7 +380,7 @@ export default function Auth() {
                       </TabsContent>
                     </Tabs>
                   </div>
-                </form>
+                </div>
               </div>
             </div>
           </div>

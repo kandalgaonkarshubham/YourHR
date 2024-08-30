@@ -1,5 +1,4 @@
-import { useNavigate, useLocation } from "react-router-dom";
-
+import { useNavigate, useLocation, Link } from "react-router-dom";
 
 import { Bell } from "lucide-react";
 
@@ -92,10 +91,12 @@ export default function Header() {
                 <Bell width={22} className="text-gray-500" />
               </li>
               <li className="md:mr-12">
-                <Avatar>
-                  <AvatarImage src="https://github.com/shadcn.png" />
-                  <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
+                <Link to="/profile">
+                  <Avatar>
+                    <AvatarImage src="https://github.com/shadcn.png" />
+                    <AvatarFallback>CN</AvatarFallback>
+                  </Avatar>
+                </Link>
               </li>
             </>
           )}

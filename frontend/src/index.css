@@ -9,3 +9,50 @@ body {
   font-optical-sizing: auto;
   font-display: swap;
 }
+
+.pagination {
+  max-width: min-content !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+  user-select: none;
+}
+
+.pagination li {
+  background-color: #f3f4f6;
+  padding-left: 0.9rem;
+  padding-right: 0.9rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  margin: 0 5px;
+  border-radius: 0.25rem;
+  font-size: .8rem;
+}
+
+.pagination li.previous,
+li.next {
+  background-color: #f3f4f6;
+  padding: 0.5rem;
+  margin: 0 5px;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.pagination li.active {
+  background-color: #ccfbf1;
+  font-weight: 600;
+}
+
+.pagination .break {
+  background-color: transparent;
+}
+
+.pagination li:not(:first-child):not(:last-child) {
+  margin: 0 5px;
+}

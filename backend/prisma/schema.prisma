@@ -1,0 +1,67 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./database.db"
+}
+
+model Users {
+  id           Int        @id @default(autoincrement())
+  fullname     String
+  email        String     @unique
+  number       String
+  password     String
+  pic   String?
+  country      String?
+  city         String?
+  education    String?
+  experience   String?
+  departmentId Int?
+  department   Departments? @relation(fields: [departmentId], references: [id])
+  resume       String?
+  skills       String?
+  languages    Languages[] @relation("UserLanguages")
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}
+
+model Jobs {
+  id                 Int        @id @default(autoincrement())
+  pic   String?
+  jobName            String
+  jobDescription     String
+  companyName        String
+  companyDesc        String
+  country            String
+  city               String
+  departmentId       Int
+  department         Departments @relation(fields: [departmentId], references: [id])
+  requiredExperience String
+  serviceType        String // e.g., 'remote' or 'drive'
+  jobType            String // e.g., 'job' or 'internship'
+  salary             String?
+  requiredSkills     String?
+  createdAt          DateTime   @default(now())
+  updatedAt          DateTime   @updatedAt
+}
+
+model Skills {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+}
+model Languages {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  users Users[] @relation("UserLanguages")
+}
+model Departments {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  users Users[]
+  jobs  Jobs[]
+}
