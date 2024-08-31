@@ -1,10 +1,14 @@
 import { useState } from "react";
 import axios from "axios";
 
+import { useAuth } from "../auth/AuthContext";
+
 import { Album, Briefcase } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "shadcn/tabs";
 
 export default function Auth() {
+  const { storeUser } = useAuth();
+
   const [formData, setFormData] = useState({
     fullname: "",
     email: "",
@@ -14,7 +18,6 @@ export default function Auth() {
     experience: "",
   });
   const [loading, setLoading] = useState(false);
-  const [response, setResponse] = useState(null);
   const [error, setError] = useState(null);
 
   const handleChange = (e) => {
@@ -37,11 +40,10 @@ export default function Auth() {
       if (formData.password === formData.cpassword) {
         setLoading(true);
         try {
-          const response = await axios.post(
-            "http://localhost:5000/register",
-            formData
-          );
-          setResponse(response.data.message);
+          await axios.post("http://localhost:5000/register", formData);
+          // eslint-disable-next-line no-unused-vars
+          const { password, cpassword, ...userData } = formData;
+          storeUser(userData);
           setLoading(false);
           setError(null);
           setFormData({
@@ -54,7 +56,7 @@ export default function Auth() {
           });
         } catch (error) {
           setLoading(false);
-          setError(error.message);
+          setError(error.response.data.message);
         }
       } else {
         setError("Passwords do not match");
@@ -66,10 +68,9 @@ export default function Auth() {
       try {
         const response = await axios.post("http://localhost:5000/login", {
           email: formData.email,
-          password: formData.password,
+          pass: formData.password,
         });
-        console.log(response.data);
-        setResponse(response.data.message);
+        storeUser(response.data);
         setError(null);
         setFormData({
           fullname: "",
@@ -80,7 +81,7 @@ export default function Auth() {
           experience: "",
         });
       } catch (error) {
-        setError(error.message);
+        setError(error.response.data.message);
       }
     }
   };
@@ -172,11 +173,6 @@ export default function Auth() {
                   {error && (
                     <p className="text-sm text-center font-bold mt-4 mb-0 text-red-500">
                       {error}
-                    </p>
-                  )}
-                  {response && (
-                    <p className="text-sm text-center font-bold mt-4 mb-0 text-green-500">
-                      {response}
                     </p>
                   )}
                   <div className="flex items-center justify-center mt-6">

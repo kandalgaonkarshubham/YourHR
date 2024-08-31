@@ -13,7 +13,7 @@ import {
 } from "shadcn/command";
 import { Popover, PopoverContent, PopoverTrigger } from "shadcn/popover";
 
-export default function Combobox({
+export default function Locationbox({
   className,
   name,
   data,

@@ -1,6 +1,5 @@
-import * as React from "react";
+import { useState } from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
-
 import { cn } from "lib/utils";
 import { Button } from "shadcn/button";
 import {
@@ -13,25 +12,37 @@ import {
 } from "shadcn/command";
 import { Popover, PopoverContent, PopoverTrigger } from "shadcn/popover";
 
-export default function Combobox({
-  className,
+export default function ComboboxMultiple({
   name,
   data,
   setUpdatedInfo,
   selected = "",
-  disabled = false,
 }) {
-  const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState(selected);
-  const handleChange = (v) => {
-    setValue(v);
-    if (setUpdatedInfo) {
+  const [open, setOpen] = useState(false);
+  const [selectedValues, setSelectedValues] = useState(
+    selected ? selected.split(",") : []
+  );
+
+  const handleSelect = (value) => {
+    setSelectedValues((prev) => {
+      const newSelectedValues = prev.includes(value)
+        ? prev.filter((item) => item !== value)
+        : [...prev, value];
+
+      setSelectedValues(newSelectedValues);
+
       setUpdatedInfo((prev) => ({
         ...prev,
-        [name]: v,
+        [name]: newSelectedValues,
       }));
-    }
+
+      return newSelectedValues;
+    });
   };
+
+  const selectedItems = data.filter((item) =>
+    selectedValues.includes(item.name)
+  );
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -40,34 +51,32 @@ export default function Combobox({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className={cn("w-full justify-between", className)}
-          disabled={disabled}
+          className="w-full justify-between whitespace-normal"
         >
-          {value
-            ? data.find((item) => item.name == value)?.name
+          {selectedItems.length > 0
+            ? selectedItems.map((item) => item.name).join(", ")
             : "Select Item..."}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-full p-0">
         <Command className="w-full">
-          <CommandInput placeholder="Search framework..." />
+          <CommandInput placeholder="Search item..." />
           <CommandList>
-            <CommandEmpty>No framework found.</CommandEmpty>
+            <CommandEmpty>No item found.</CommandEmpty>
             <CommandGroup>
               {data.map((item) => (
                 <CommandItem
                   key={item.name}
-                  value={item.name}
-                  onSelect={(currentValue) => {
-                    handleChange(currentValue == value ? "" : currentValue);
-                    setOpen(false);
-                  }}
+                  onSelect={() => handleSelect(item.name)}
+                  className="cursor-pointer"
                 >
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      value == item.name ? "opacity-100" : "opacity-0"
+                      selectedValues.includes(item.name)
+                        ? "opacity-100"
+                        : "opacity-0"
                     )}
                   />
                   {item.name}

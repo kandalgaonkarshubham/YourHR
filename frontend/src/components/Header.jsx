@@ -1,12 +1,15 @@
 import { useNavigate, useLocation, Link } from "react-router-dom";
 
-import { Bell } from "lucide-react";
+import { useAuth } from "../auth/AuthContext";
+
+import { Bell, LogOut } from "lucide-react";
 
 import { Avatar, AvatarImage, AvatarFallback } from "shadcn/avatar";
 
 export default function Header() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { user, logout } = useAuth();
   return (
     <header className="relative flex max-w-screen-xl flex-col overflow-hidden px-4 py-4 text-slate-700 md:mx-auto md:flex-row md:items-center">
       <a
@@ -69,7 +72,7 @@ export default function Header() {
           <li className="md:mr-12">
             <a href="#">Services</a>
           </li>
-          {false ? (
+          {!user ? (
             <>
               <li className="md:mr-4">
                 <button
@@ -90,11 +93,19 @@ export default function Header() {
               <li className="md:mr-4">
                 <Bell width={22} className="text-gray-500" />
               </li>
-              <li className="md:mr-12">
+              <li className="flex items-center md:mr-12 border border-gray-200 rounded-full gap-2">
+                <button className="ms-4 p-0 m-0" onClick={logout}>
+                  <LogOut width={20} className="text-gray-400" />
+                </button>
                 <Link to="/profile">
                   <Avatar>
-                    <AvatarImage src="https://github.com/shadcn.png" />
-                    <AvatarFallback>CN</AvatarFallback>
+                    <AvatarImage src={user.pic} />
+                    <AvatarFallback>
+                      {user.fullname
+                        .split(" ")
+                        .map((word) => word.charAt(0).toUpperCase())
+                        .join("")}
+                    </AvatarFallback>
                   </Avatar>
                 </Link>
               </li>

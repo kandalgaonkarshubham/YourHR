@@ -2,6 +2,9 @@ import "./index.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
+import { AuthProvider } from "./auth/AuthContext";
+import RequireAuth from "./auth/RequireAuth";
+
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Root from "routes/Root";
@@ -17,15 +20,27 @@ const router = createBrowserRouter([
   },
   {
     path: "/auth",
-    element: <Auth />,
+    element: (
+      <RequireAuth requireAuth={false}>
+        <Auth />
+      </RequireAuth>
+    ),
   },
   {
     path: "/jobs",
-    element: <Jobs />,
+    element: (
+      <RequireAuth requireAuth={true}>
+        <Jobs />
+      </RequireAuth>
+    ),
   },
   {
     path: "/profile",
-    element: <Profile />,
+    element: (
+      <RequireAuth requireAuth={true}>
+        <Profile />
+      </RequireAuth>
+    ),
   },
   {
     path: "*",
@@ -35,6 +50,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>
 );

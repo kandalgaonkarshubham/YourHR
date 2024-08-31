@@ -16,23 +16,22 @@ model Users {
   email        String     @unique
   number       String
   password     String
-  pic   String?
+  pic          String?
   country      String?
-  city         String?
-  education    String?
   experience   String?
-  departmentId Int?
-  department   Departments? @relation(fields: [departmentId], references: [id])
+  department   String?
   resume       String?
   skills       String?
-  languages    Languages[] @relation("UserLanguages")
+  desiredJobType      String?
+  desiredWorkLocation String?
+  desiredSalary      String?
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
 }
 
 model Jobs {
   id                 Int        @id @default(autoincrement())
-  pic   String?
+  pic                String?
   jobName            String
   jobDescription     String
   companyName        String
@@ -42,8 +41,8 @@ model Jobs {
   departmentId       Int
   department         Departments @relation(fields: [departmentId], references: [id])
   requiredExperience String
-  serviceType        String // e.g., 'remote' or 'drive'
-  jobType            String // e.g., 'job' or 'internship'
+  serviceType        String
+  jobType            String
   salary             String?
   requiredSkills     String?
   createdAt          DateTime   @default(now())
@@ -54,14 +53,8 @@ model Skills {
   id    Int    @id @default(autoincrement())
   name  String @unique
 }
-model Languages {
-  id    Int    @id @default(autoincrement())
-  name  String @unique
-  users Users[] @relation("UserLanguages")
-}
 model Departments {
   id    Int    @id @default(autoincrement())
   name  String @unique
-  users Users[]
   jobs  Jobs[]
 }

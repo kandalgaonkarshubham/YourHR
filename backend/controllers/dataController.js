@@ -5,36 +5,38 @@ const fetchJobs = async (req, res) => {
     const jobs = await prisma.jobs.findMany({
       include: {
         departmentId: false,
-        department: {
-          select: {
-            name: true
-          }
-        },
-      },
+        department: true,
+        updatedAt: false,
+      }
     });
     res.status(200).json(jobs);
   } catch (error) {
-    console.error('Error fetching jobs:', error);
-    res.status(500).json({ error: true, message: 'An error occurred while fetching jobs.' });
+    res.status(500).json({ error: true, message: error.message });
   }
 };
 const fetchSkills = async (req, res) => {
   try {
-    const jobs = await prisma.skills.findMany();
-    res.status(200).json(jobs);
+    const skills = await prisma.skills.findMany({
+      select: {
+        name: true
+      }
+    });
+    res.status(200).json(skills);
   } catch (error) {
-    console.error('Error fetching jobs:', error);
-    res.status(500).json({ error: true, message: 'An error occurred while fetching jobs.' });
+    res.status(500).json({ error: true, message: 'An error occurred while fetching Skills.' });
   }
 };
-const fetchDepartments = async (req, res) => {
+const fetchDepts = async (req, res) => {
   try {
-    const jobs = await prisma.jobs.findMany();
-    res.status(200).json(jobs);
+    const depts = await prisma.departments.findMany({
+      select: {
+        name: true
+      }
+    });
+    res.status(200).json(depts);
   } catch (error) {
-    console.error('Error fetching jobs:', error);
-    res.status(500).json({ error: true, message: 'An error occurred while fetching jobs.' });
+    res.status(500).json({ error: true, message: 'An error occurred while fetching Departments.' });
   }
 };
 
-module.exports = { fetchJobs, fetchSkills, fetchDepartments }
+module.exports = { fetchJobs, fetchSkills, fetchDepts };
