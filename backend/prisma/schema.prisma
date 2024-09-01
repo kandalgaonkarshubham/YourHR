@@ -7,7 +7,7 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = "file:./database.db"
+  url      = "sqlitecloud://cgnzy1q3sk.sqlite.cloud:8860?apikey=mWb3KIThPYNr9sbdiFHYiteCzbQMpYc92Ykkn0X6cLA"
 }
 
 model Users {
