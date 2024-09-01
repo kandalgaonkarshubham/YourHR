@@ -47,9 +47,9 @@ async function main() {
         city: faker.location.city(),
         departmentId: faker.helpers.rangeToNumber({ min: 1, max: 10 }),
         requiredSkills: faker.helpers.arrayElements(skills, { min: 3, max: 7 }).join(', '),
-        requiredExperience: `${faker.helpers.rangeToNumber({ min: 1, max: 10 })} Years`,
+        requiredExperience: `${faker.helpers.rangeToNumber({ min: 0, max: 10 })} Years`,
         serviceType: faker.helpers.arrayElement(['remote', 'onsite', 'hybrid']),
-        jobType: faker.helpers.arrayElement(['permanent', 'parttime',]),
+        jobType: faker.helpers.arrayElement(['permanent', 'parttime', 'freelance', 'contract']),
         salary: randomSalary(),
       }
     });

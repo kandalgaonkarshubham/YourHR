@@ -40,7 +40,10 @@ export default function Auth() {
       if (formData.password === formData.cpassword) {
         setLoading(true);
         try {
-          await axios.post("http://localhost:5000/register", formData);
+          await axios.post(
+            `${import.meta.env.VITE_BACKEND_URL}/register`,
+            formData
+          );
           // eslint-disable-next-line no-unused-vars
           const { password, cpassword, ...userData } = formData;
           storeUser(userData);
@@ -66,10 +69,13 @@ export default function Auth() {
   const handleLogin = async () => {
     if (formData.email && formData.password) {
       try {
-        const response = await axios.post("http://localhost:5000/login", {
-          email: formData.email,
-          pass: formData.password,
-        });
+        const response = await axios.post(
+          `${import.meta.env.VITE_BACKEND_URL}/login`,
+          {
+            email: formData.email,
+            pass: formData.password,
+          }
+        );
         storeUser(response.data);
         setError(null);
         setFormData({
@@ -81,6 +87,7 @@ export default function Auth() {
           experience: "",
         });
       } catch (error) {
+        console.log(error);
         setError(error.response.data.message);
       }
     }

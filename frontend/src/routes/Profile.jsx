@@ -58,7 +58,7 @@ export default function Profile() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/upload",
+        `${import.meta.env.VITE_BACKEND_URL}/upload`,
         formData
       );
       storeUser(response.data);
@@ -82,10 +82,13 @@ export default function Profile() {
       };
       const newUpdatedInfo = updateSkills(updatedInfo);
       try {
-        const response = await axios.post("http://localhost:5000/user", {
-          email: user.email,
-          updatedInfo: newUpdatedInfo,
-        });
+        const response = await axios.post(
+          `${import.meta.env.VITE_BACKEND_URL}/user`,
+          {
+            email: user.email,
+            updatedInfo: newUpdatedInfo,
+          }
+        );
         storeUser(response.data.user);
         setUpdatedInfo({});
         setOpenDialog(false);
@@ -97,7 +100,9 @@ export default function Profile() {
 
   const fetchSkills = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/skills");
+      const response = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/skills`
+      );
       setSkills(response.data);
     } catch (error) {
       console.log(error);
@@ -105,7 +110,9 @@ export default function Profile() {
   };
   const fetchDepts = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/depts");
+      const response = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/depts`
+      );
       setDepartments(response.data);
     } catch (error) {
       console.log(error);
@@ -150,7 +157,7 @@ export default function Profile() {
                     >
                       {user.pic ? (
                         <img
-                          src={user.pic}
+                          src={import.meta.env.VITE_BACKEND_URL + user.pic}
                           className="w-32 h-32 rounded-full shrink-0"
                         />
                       ) : (
@@ -305,7 +312,7 @@ export default function Profile() {
                         <a
                           download
                           target="_blank"
-                          href={user.resume}
+                          href={import.meta.env.VITE_BACKEND_URL + user.resume}
                           className="no-underline text-inherit cursor-pointer"
                         >
                           <ArrowDownToLine

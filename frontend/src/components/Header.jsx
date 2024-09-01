@@ -12,8 +12,8 @@ export default function Header() {
   const { user, logout } = useAuth();
   return (
     <header className="relative flex max-w-screen-xl flex-col overflow-hidden px-4 py-4 text-slate-700 md:mx-auto md:flex-row md:items-center">
-      <a
-        href="/"
+      <Link
+        to="/"
         className="flex cursor-pointer items-center whitespace-nowrap text-2xl font-bold font-[Syne] uppercase"
       >
         <span className="mr-2 text-4xl text-teal-500">
@@ -31,7 +31,7 @@ export default function Header() {
           </svg>
         </span>
         YourHR
-      </a>
+      </Link>
       <input type="checkbox" className="peer hidden" id="navbar-open" />
       <label
         className="absolute top-5 right-7 cursor-pointer md:hidden"
@@ -99,7 +99,9 @@ export default function Header() {
                 </button>
                 <Link to="/profile">
                   <Avatar>
-                    <AvatarImage src={user.pic} />
+                    <AvatarImage
+                      src={import.meta.env.VITE_BACKEND_URL + user.pic}
+                    />
                     <AvatarFallback>
                       {user.fullname
                         .split(" ")

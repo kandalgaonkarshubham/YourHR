@@ -1,3 +1,6 @@
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+
 import {
   FigmaLogoIcon,
   FramerLogoIcon,
@@ -58,6 +61,8 @@ const LOGOS = [
 ];
 
 export default function Hero() {
+  const navigate = useNavigate();
+  const [search, setSearch] = useState("");
   return (
     <>
       <div className="relative mx-auto px-4 pt-16 sm:max-w-xl md:max-w-full md:px-8 lg:py-32 xl:px-20">
@@ -87,10 +92,17 @@ export default function Hero() {
                 className="block w-full p-4 text-sm text-black outline-none"
                 placeholder="Job Title"
                 required
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
               />
               <button
                 type="submit"
                 className="text-white absolute end-2.5 bottom-2.5 bg-teal-700 font-medium rounded-lg text-sm px-4 py-2 pt-1.5"
+                onClick={() => {
+                  navigate({
+                    pathname: "jobs",
+                  });
+                }}
               >
                 Find Jobs
               </button>

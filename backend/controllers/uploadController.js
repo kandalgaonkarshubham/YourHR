@@ -61,11 +61,11 @@ const uploadFile = (req, res) => {
 
     const fileUrls = {};
     if (req.files.pic) {
-      const picUrl = `http://localhost:5000/public/users/${req.body.email}/${req.files.pic[0].filename}`;
+      const picUrl = `/public/users/${req.body.email}/${req.files.pic[0].filename}`;
       fileUrls.pic = picUrl;
     }
     if (req.files.resume) {
-      const resumeUrl = `http://localhost:5000/public/users/${req.body.email}/${req.files.resume[0].filename}`;
+      const resumeUrl = `/public/users/${req.body.email}/${req.files.resume[0].filename}`;
       fileUrls.resume = resumeUrl;
     }
 

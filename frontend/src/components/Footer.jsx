@@ -74,6 +74,18 @@ export default function Footer() {
               312 Lovely Street, NY
             </a>
           </div>
+          <div className="flex">
+            <a
+              href="https://kandalgaonkarshubham.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Me"
+              title="Me"
+              className="transition-colors duration-300 text-deep-purple-accent-400 hover:text-deep-purple-800"
+            >
+              Portfolio
+            </a>
+          </div>
         </div>
         <div className="w-full md:container mx-auto flex flex-col justify-around text-center">
           <div className="flex flex-col items-start md:justify-center lg:text-left">
