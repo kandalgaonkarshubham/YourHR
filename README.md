@@ -2,6 +2,8 @@
 # Live Demo
 Frontend: https://yourhrfrontend.vercel.app/ Backend: https://yourhrback-end.vercel.app/
 
+The Website is having problem in logging/registering because sqlite is not supported on vercel, please download the repo and run it locally
+
 
 ## Features
 
