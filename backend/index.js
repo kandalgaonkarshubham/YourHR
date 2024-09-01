@@ -22,3 +22,4 @@ app.use('/upload', require('./routes/upload'));
 app.listen(PORT, () => {
   console.log(`YourHR Backend Server running on http://localhost:${PORT}`);
 });
+module.exports = app;
