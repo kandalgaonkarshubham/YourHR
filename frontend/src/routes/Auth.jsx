@@ -87,7 +87,6 @@ export default function Auth() {
           experience: "",
         });
       } catch (error) {
-        console.log(error);
         setError(error.response.data.message);
       }
     }
