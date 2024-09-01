@@ -5,7 +5,7 @@ const path = require('path');
 const app = express();
 const PORT = 5000;
 
-app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use('/public', express.static(path.join(__dirname, '../public')));
 
 app.use(cors());
 app.use(express.json());
