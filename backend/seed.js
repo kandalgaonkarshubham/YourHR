@@ -31,11 +31,8 @@ function randomSalary() {
   return `${minSalary}-${maxSalary}`;
 }
 
-
-
-
 async function main() {
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 100; i++) {
     await prisma.jobs.create({
       data: {
         pic: faker.image.urlLoremFlickr({ category: 'business' }),

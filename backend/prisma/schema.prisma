@@ -6,13 +6,13 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mongodb"
   // url      = "sqlitecloud:cgnzy1q3sk.sqlite.cloud:8860?apikey=mWb3KIThPYNr9sbdiFHYiteCzbQMpYc92Ykkn0X6cLA"
-  url = "file:./database.db"
+  url = "mongodb+srv://kandalgaonkarshubham:yourhr@yourhr.vzkjd.mongodb.net/YourHR?retryWrites=true&w=majority&appName=YourHR"
 }
 
 model Users {
-  id           Int        @id @default(autoincrement())
+  id           String        @id @default(auto()) @map("_id") @db.ObjectId
   fullname     String
   email        String     @unique
   number       String
@@ -31,7 +31,7 @@ model Users {
 }
 
 model Jobs {
-  id                 Int        @id @default(autoincrement())
+  id                 String        @id @default(auto()) @map("_id") @db.ObjectId
   pic                String?
   jobName            String
   jobDescription     String
@@ -40,7 +40,7 @@ model Jobs {
   country            String
   city               String
   departmentId       Int
-  department         Departments @relation(fields: [departmentId], references: [id])
+  department         Departments @relation(fields: [departmentId], references: [departmentId])
   requiredExperience String
   serviceType        String
   jobType            String
@@ -51,11 +51,12 @@ model Jobs {
 }
 
 model Skills {
-  id    Int    @id @default(autoincrement())
+  id    String        @id @default(auto()) @map("_id") @db.ObjectId
   name  String @unique
 }
 model Departments {
-  id    Int    @id @default(autoincrement())
+  id    String        @id @default(auto()) @map("_id") @db.ObjectId
+  departmentId Int @unique
   name  String @unique
   jobs  Jobs[]
 }

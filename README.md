@@ -2,8 +2,6 @@
 # Live Demo
 Frontend: https://yourhrfrontend.vercel.app/ Backend: https://yourhrback-end.vercel.app/
 
-The Website is having problem in logging/registering because sqlite is not supported on vercel, please download the repo and run it locally
-
 
 ## Features
 
@@ -32,7 +30,7 @@ The Website is having problem in logging/registering because sqlite is not suppo
 ## TechStack
   - **Frontend:** React, Axios, Vercel for hosting
   - **Backend:** Node.js, Express, Prisma, Vercel for hosting
-  - **Database:** SQLite Database File (production hosted on a free SQLite cloud service)
+  - **Database:** I initially used SQLite Database, but at the time of deployment i found out that vercel doesnt support sqlite, so i had to migrate my entire db to mongo. As a result, the project now uses MongoDB, but the old SQLite database file remains in the prisma folder.
 ## Setup and Installation
 
 git clone https://github.com/kandalgaonkarshubham/YourHR
@@ -42,7 +40,7 @@ In the root directory of folder run : `npm run initate`, this will install all d
 npm run initate
 npm run dev
 ```
-    
+
 ## Usage/Examples
 
   - **Register/Login:** Visit the /auth route to register or log in.
