@@ -47,7 +47,6 @@ npm run dev
   - **Update Profile:** Go to the /profile page to fill details such as your resume and profile picture.
   - **Browse Jobs:** Use the /jobs page to view and filter available job listings.
 
-
-## Notes
-- The data used in this project is randomly generated using Faker.js, so expect random and diverse values.
-- Currently, the code to filter jobs use only two profile fields _(Job Type & Work Location)_ and rest is commented due to fetch jobs due to limited data in the backend.
+> [!NOTE]  
+> - The data used in this project is randomly generated using Faker.js, so expect random and diverse values.
+> - Currently, the code to filter jobs use only two profile fields _(Job Type & Work Location)_ and rest is commented due to fetch jobs due to limited data in the backend.
