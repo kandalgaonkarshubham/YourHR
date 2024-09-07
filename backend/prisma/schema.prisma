@@ -8,7 +8,7 @@ generator client {
 datasource db {
   provider = "mongodb"
   // url      = "sqlitecloud:cgnzy1q3sk.sqlite.cloud:8860?apikey=mWb3KIThPYNr9sbdiFHYiteCzbQMpYc92Ykkn0X6cLA"
-  url = env("DATABASE_URL")
+  url = env("MONGODB_URI")
 }
 
 model Users {
